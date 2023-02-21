@@ -27,6 +27,12 @@ variable "vpc_id" {
   description = "VPC id"
 }
 
+variable "private_vpc_cidr_block" {
+  type = string
+  #default = "${var.vpc_id}" #"vpc-0f5b9240fdef55319"
+  description = "VPC CIDR"
+}
+
 variable "pri_subnet_id" {
   type = string
   #default = "${var.pri_subnet_id}" #"subnet-0071a6c492c7e5730"

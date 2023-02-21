@@ -4,10 +4,10 @@
     profile = "${var.credentials_profile}"
 }
 
-resource "aws_security_group" "secu-group-test" {
-  name = "New Relic Linux"
-  description = "New Relic Linux"
-  vpc_id = "${var.vpc_id}" #"vpc-2ff8904b"  #aws_vpc.private_vpc.id
+resource "aws_security_group" "secu-group-test2" {
+  name = "New Relic"
+  description = "New Relic secu group"
+  vpc_id = var.vpc_id #"vpc-2ff8904b"  #aws_vpc.private_vpc.id
 
   ingress {
     from_port = 22
@@ -16,22 +16,10 @@ resource "aws_security_group" "secu-group-test" {
     cidr_blocks = ["0.0.0.0/0"]#[aws_subnet.private_subnet.cidr_block]
   }
   ingress {
-    from_port = 80
-    to_port = 80
-    protocol = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-  ingress {
     from_port = 3389
     to_port = 3389
     protocol = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
-  }
-  ingress {
-    from_port = 5985
-    to_port = 5985
-    protocol = "tcp"
-    cidr_blocks = ["172.16.0.0/16"]
   }
   egress {
     from_port = 0
@@ -44,20 +32,20 @@ resource "aws_security_group" "secu-group-test" {
   }
 }
 
-/* resource "aws_instance" "li-newrelic" {
+resource "aws_instance" "li-newrelic" {
     #count = 3 
-    ami = "ami-0f2eac25772cd4e36" # Amazon Linux 2
-    instance_type = "${var.instance_type}" #"t2.micro"
-    subnet_id = "${var.pri_subnet_id}" #"subnet-1862547c" #aws_subnet.private_subnet.id 
-    security_groups = [aws_security_group.secu-group-test.id]
-    key_name =  "Tan-TF-key" #"${var.key_name}" #"tf1-key"
+    ami = var.linux_ami #"ami-0f2eac25772cd4e36" # Amazon Linux 2
+    instance_type = var.instance_type #"t2.micro"
+    subnet_id = var.pri_subnet_id #"subnet-1862547c" #aws_subnet.private_subnet.id 
+    security_groups = [aws_security_group.secu-group-test2.id]
+    key_name = var.key_name #"Tan-TF-key" #"tf1-key"
     associate_public_ip_address = true
    
     connection {
         host = aws_instance.li-newrelic.public_ip
         type = "ssh"
         user = var.instance_username
-        private_key = "${file("D://terraform//ssh-key//tan-tf-key.pem")}"
+        private_key = var.private_key_pem #"${file("D://terraform//ssh-key//tan-tf-key.pem")}"
         timeout = 10
         #tls_private_key.example.private_key_openssh #"${file("C:\\Users\\tnguyen600\\Desktop\\PGA\\tan-aws-key1.pem")}" #"${file(var.pri_key)}"
     }
@@ -71,15 +59,15 @@ resource "aws_security_group" "secu-group-test" {
     tags = {
       Name = "linux-newrelic"
     }
-} */
+}
 
-/* resource "aws_instance" "win" {
+resource "aws_instance" "win" {
   ami = var.windows_ami #"ami-0bc64185df5784cc3"
   instance_type = var.instance_type
-  subnet_id = "${var.pri_subnet_id}"
-  vpc_security_group_ids = [aws_security_group.secu-group-test.id]
+  subnet_id = var.pri_subnet_id
+  vpc_security_group_ids = [aws_security_group.secu-group-test2.id]
   source_dest_check = false
-  key_name = "Tan-TF-key"
+  key_name = var.key_name
   user_data = data.template_file.windows-userdata.rendered 
   associate_public_ip_address = true
   
@@ -102,4 +90,4 @@ resource "aws_security_group" "secu-group-test" {
   tags = {
     Name = "windows-newrelic"
   }
-} */
+}

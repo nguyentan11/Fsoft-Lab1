@@ -61,3 +61,7 @@ output "vpc-out" {
 output "private-subnet-out" {
   value = aws_subnet.private_subnet.id
 }
+
+output "private_vpc_cidr_block" {
+  value = aws_vpc.private_vpc.cidr_block
+}

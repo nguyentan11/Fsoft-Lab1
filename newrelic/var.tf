@@ -23,12 +23,17 @@ variable "key_name" {
 
 variable "vpc_id" {
   type = string
-  default = "vpc-0f5b9240fdef55319"
+  #default = "vpc-0f5b9240fdef55319"
 }
 
 variable "pri_subnet_id" {
   type = string
-  default = "subnet-0071a6c492c7e5730"
+  #default = "subnet-0071a6c492c7e5730"
+}
+
+variable "private_key_pem" {
+  type = string
+  description = "Private key pem"
 }
 
 variable "instance_username" {

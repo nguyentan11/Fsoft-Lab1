@@ -38,14 +38,14 @@ resource "aws_instance" "li-ansible" {
     instance_type = "${var.instance_type}" #"t2.micro"
     subnet_id = "${var.pri_subnet_id}" #"subnet-1862547c" #aws_subnet.private_subnet.id 
     security_groups = [aws_security_group.secu-group-ansible.id]
-    key_name =  "Tan-TF-key" #"${var.key_name}" #"tf1-key"
+    key_name = "${var.key_name}" #"Tan-TF-key" #"tf1-key"
     associate_public_ip_address = true
    
     connection {
         host = aws_instance.li-ansible.public_ip
         type = "ssh"
         user = var.instance_username
-        private_key = "${file("D://ssh-key//tan-tf-key.pem")}"
+        private_key = "${var.private_key_pem}}"#"${file("D://ssh-key//tan-tf-key.pem")}"
         timeout = 10
         #tls_private_key.example.private_key_openssh #"${file("C:\\Users\\tnguyen600\\Desktop\\PGA\\tan-aws-key1.pem")}" #"${file(var.pri_key)}"
     }

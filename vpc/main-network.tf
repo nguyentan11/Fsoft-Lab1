@@ -22,11 +22,11 @@ resource "aws_internet_gateway" "another_gw" {
 }
 
 resource "aws_subnet" "private_subnet" {
-  count = length(var.private_subnet)
+  #count = length(var.private_subnet)
   
   vpc_id            = aws_vpc.private_vpc.id
-  cidr_block        = var.private_subnet[count.index]
-  availability_zone = var.availability_zone[count.index % length(var.availability_zone)]
+  cidr_block        = var.private_subnet #[count.index]
+  availability_zone = var.availability_zone #[count.index % length(var.availability_zone)]
   
   tags = {
     Name = "private_network_interface"
@@ -34,11 +34,11 @@ resource "aws_subnet" "private_subnet" {
 }
 
 resource "aws_subnet" "public_subnet" {
-  count = length(var.public_subnet)
+  #count = length(var.public_subnet)
   
   vpc_id            = aws_vpc.private_vpc.id
-  cidr_block        = var.public_subnet[count.index]
-  availability_zone = var.availability_zone[count.index % length(var.availability_zone)]
+  cidr_block        = var.public_subnet #[count.index]
+  availability_zone = var.availability_zone #[count.index % length(var.availability_zone)]
   tags = {
     Name = "public_network_interface"
   }
@@ -54,10 +54,10 @@ resource "aws_default_route_table" "TF-default-route" {
   }
 }
 
-/* output "vpc-out" {
+output "vpc-out" {
   value = aws_vpc.private_vpc.id
 }
 
-output "subnet-out" {
+output "private-subnet-out" {
   value = aws_subnet.private_subnet.id
-} */
+}

@@ -29,13 +29,13 @@ variable "public_vpc_cidr_block" {
 }
 
 variable "private_subnet" {
-  type    = list(string)
+  type    = string
 }
 
 variable "public_subnet" {
-  type    = list(string)
+  type    = string
 }
 
 variable "availability_zone" {
-  type    = list(string)
+  type    = string
 }

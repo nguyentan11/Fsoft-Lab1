@@ -21,11 +21,15 @@ resource "aws_key_pair" "generated_key" {
 }
 
 resource "local_file" "ssh_key" {
-  filename = "D://terraform//ssh-key//${aws_key_pair.generated_key.key_name}.pem"
+  filename = "D://ssh-key//${aws_key_pair.generated_key.key_name}.pem"
   content  = tls_private_key.tan-private.private_key_pem
 }
 
-output "private_key" {
+output "private_key_name" {
+  value     = var.key_name
+}
+
+output "private_key_pem" {
   value     = tls_private_key.tan-private.private_key_pem
   sensitive = true
 }

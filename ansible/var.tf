@@ -61,6 +61,16 @@ variable "instance_type" {
   } */
 }
 
+variable "linux_private_ip" {
+  type = string
+  description = "Linux private ip"
+}
+
+variable "windows_private_ip" {
+  type = string
+  description = "Windows Private ip"
+}
+
 variable "linux_ami"{
   type = string
   description = "AMI for Linux instance"

@@ -32,7 +32,7 @@ resource "aws_security_group" "secu-group-test2" {
   }
 }
 
-resource "aws_instance" "li-newrelic" {
+resource "aws_instance" "li" {
     #count = 3 
     ami = var.linux_ami #"ami-0f2eac25772cd4e36" # Amazon Linux 2
     instance_type = var.instance_type #"t2.micro"
@@ -42,7 +42,7 @@ resource "aws_instance" "li-newrelic" {
     associate_public_ip_address = true
    
     connection {
-        host = aws_instance.li-newrelic.public_ip
+        host = aws_instance.li.public_ip
         type = "ssh"
         user = var.instance_username
         private_key = var.private_key_pem #"${file("D://terraform//ssh-key//tan-tf-key.pem")}"
@@ -90,4 +90,14 @@ resource "aws_instance" "win" {
   tags = {
     Name = "windows-newrelic"
   }
+}
+
+output "linux_private_ip" {
+  value       = aws_instance.li.private_ip
+  description = "Linux private ip"
+}
+
+output "windows_private_ip" {
+  value       = aws_instance.win.private_ip
+  description = "Windows private ip"
 }

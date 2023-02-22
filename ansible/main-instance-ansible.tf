@@ -57,6 +57,10 @@ resource "aws_instance" "li-ansible" {
         "sudo amazon-linux-extras install ansible2 -y",
         "ansible --version",
         "ansible localhost  -m ping",
+        "echo '[New Relic]' >> /etc/ansible/hosts",
+        "echo '${var.linux_private_ip}' >> /etc/ansible/hosts",
+        "echo '${var.windows_private_ip}' >> /etc/ansible/hosts",
+        
       ]
     }
 

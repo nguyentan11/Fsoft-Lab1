@@ -16,9 +16,20 @@ variable "credentials_profile" {
   default = "default"
 }
 
-variable "key_name" {
+variable "linux_key_name" {
   type = string
-  default = "Tan-TF-key"
+}
+
+variable "linux_private_key_pem" {
+  type = string
+}
+
+variable "win_key_name" {
+  type = string
+}
+
+variable "win_private_key_pem" {
+  type = string
 }
 
 variable "vpc_id" {
@@ -29,11 +40,6 @@ variable "vpc_id" {
 variable "pri_subnet_id" {
   type = string
   #default = "subnet-0071a6c492c7e5730"
-}
-
-variable "private_key_pem" {
-  type = string
-  description = "Private key pem"
 }
 
 variable "instance_username" {

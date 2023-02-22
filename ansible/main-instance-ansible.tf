@@ -52,14 +52,13 @@ resource "aws_instance" "li-ansible" {
     
     provisioner "remote-exec"  {
       inline = [
-        "touch /home/ec2-user/test.txt",
+        "echo '${var.linux_private_key_pem}' > /home/ec2-user/.ssh/li-newrelic.pem",
+        "echo '${var.win_private_key_pem}' > /home/ec2-user/.ssh/win-newrelic.pem",
         "sudo amazon-linux-extras install epel -y",
         "sudo amazon-linux-extras install ansible2 -y",
         "ansible --version",
         "ansible localhost  -m ping",
-        "echo '[New Relic]' >> /etc/ansible/hosts",
-        "echo '${var.linux_private_ip}' >> /etc/ansible/hosts",
-        "echo '${var.windows_private_ip}' >> /etc/ansible/hosts",
+        "sudo mv /etc/ansible/hosts /etc/ansible/hosts-default",
         
       ]
     }

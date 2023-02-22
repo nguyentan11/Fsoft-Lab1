@@ -18,7 +18,14 @@ variable "credentials_profile" {
 
 variable "key_name" {
   type = string
-  default = "Tan-TF-key"
+}
+
+variable "linux_private_key_pem" {
+  type = string
+}
+
+variable "win_private_key_pem" {
+  type = string
 }
 
 variable "vpc_id" {

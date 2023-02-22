@@ -16,7 +16,12 @@ variable "credentials_profile" {
   default = "default"
 }
 
-variable "key_name" {
+variable "key_name_linux" {
   type = string
-  default = "Tan-TF-key"
+  default = "Tan-TF-Linux-key"
+}
+
+variable "key_name_win" {
+  type = string
+  default = "Tan-TF-Windows-key"
 }

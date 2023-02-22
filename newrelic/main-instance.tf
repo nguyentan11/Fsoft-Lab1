@@ -38,14 +38,14 @@ resource "aws_instance" "li" {
     instance_type = var.instance_type #"t2.micro"
     subnet_id = var.pri_subnet_id #"subnet-1862547c" #aws_subnet.private_subnet.id 
     security_groups = [aws_security_group.secu-group-test2.id]
-    key_name = var.key_name #"Tan-TF-key" #"tf1-key"
+    key_name = var.linux_key_name #"Tan-TF-key" #"tf1-key"
     associate_public_ip_address = true
    
     connection {
         host = aws_instance.li.public_ip
         type = "ssh"
         user = var.instance_username
-        private_key = var.private_key_pem #"${file("D://terraform//ssh-key//tan-tf-key.pem")}"
+        private_key = var.linux_private_key_pem #"${file("D://terraform//ssh-key//tan-tf-key.pem")}"
         timeout = 10
         #tls_private_key.example.private_key_openssh #"${file("C:\\Users\\tnguyen600\\Desktop\\PGA\\tan-aws-key1.pem")}" #"${file(var.pri_key)}"
     }
@@ -67,7 +67,7 @@ resource "aws_instance" "win" {
   subnet_id = var.pri_subnet_id
   vpc_security_group_ids = [aws_security_group.secu-group-test2.id]
   source_dest_check = false
-  key_name = var.key_name
+  key_name = var.win_key_name
   user_data = data.template_file.windows-userdata.rendered 
   associate_public_ip_address = true
   

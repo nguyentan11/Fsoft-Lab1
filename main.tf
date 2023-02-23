@@ -3,6 +3,7 @@ provider "aws" {
     shared_credentials_files = ["~/.aws/credentials"] #["${pathexpand(var.credentials_file_path)}"]
     profile = "default" #"${var.credentials_profile}"
 }
+
 module "vpc" {
   source = "./vpc"
 

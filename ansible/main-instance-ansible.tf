@@ -1,8 +1,8 @@
- provider "aws" {
+/*  provider "aws" {
     region = var.aws_region
     shared_credentials_files = ["${pathexpand(var.credentials_file_path)}"]
     profile = var.credentials_profile
-}
+} */
 
 resource "aws_security_group" "secu-group-ansible" {
   name = "Ansible Linux"

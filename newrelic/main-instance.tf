@@ -38,6 +38,7 @@ resource "aws_instance" "li" {
     instance_type = var.instance_type #"t2.micro"
     subnet_id = var.pri_subnet_id #"subnet-1862547c" #aws_subnet.private_subnet.id 
     security_groups = [aws_security_group.secu-group-test2.id]
+    source_dest_check = false
     key_name = var.linux_key_name #"Tan-TF-key" #"tf1-key"
     associate_public_ip_address = true
    

@@ -30,25 +30,21 @@ variable "win_private_key_pem" {
 
 variable "vpc_id" {
   type = string
-  #default = "${var.vpc_id}" #"vpc-0f5b9240fdef55319"
   description = "VPC id"
 }
 
 variable "private_vpc_cidr_block" {
   type = string
-  #default = "${var.vpc_id}" #"vpc-0f5b9240fdef55319"
   description = "VPC CIDR"
 }
 
 variable "pri_subnet_id" {
   type = string
-  #default = "${var.pri_subnet_id}" #"subnet-0071a6c492c7e5730"
   description = "Private subnet id"
 }
 
 variable "private_key_pem" {
   type = string
-  #default = "${var.pri_subnet_id}" #"subnet-0071a6c492c7e5730"
   description = "Private key pem"
 }
 
@@ -83,3 +79,4 @@ variable "linux_ami"{
   description = "AMI for Linux instance"
   default = "ami-0f2eac25772cd4e36"
 }
+

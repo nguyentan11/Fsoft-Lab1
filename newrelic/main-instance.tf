@@ -77,6 +77,7 @@ resource "aws_instance" "win" {
   key_name = var.win_key_name
   user_data = data.template_file.windows-userdata.rendered 
   associate_public_ip_address = true
+  get_password_data = true
   
   # root disk
   root_block_device {
@@ -108,3 +109,8 @@ output "windows_private_ip" {
   value       = aws_instance.win.private_ip
   description = "Windows private ip"
 }
+
+/* output "password_window_decrypted" {
+  value = rsadecrypt(aws_instance.win.password_data, file("${var.win_public_key}")) 
+  sensitive = true
+} */

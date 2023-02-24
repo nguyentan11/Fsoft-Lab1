@@ -46,7 +46,6 @@ resource "local_file" "Windows_ssh_key" {
   content  = tls_private_key.tan-private-win.private_key_pem
 }
 
-
 output "linux_private_key_name" {
   value     = var.key_name_linux
 }

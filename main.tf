@@ -41,6 +41,7 @@ module "ansible" {
   win_private_key_pem = "${module.key.win_private_key_pem}"
   linux_private_ip = "${module.newrelic.linux_private_ip}"
   windows_private_ip = "${module.newrelic.windows_private_ip}"
+  
 }
 
 output "linux_private_key_pem"{
@@ -50,5 +51,10 @@ output "linux_private_key_pem"{
 
 output "win_private_key_pem"{
   value = module.key.win_private_key_pem
+  sensitive = true
+}
+
+output "win_public_key" {
+  value     = module.key.win_public_key
   sensitive = true
 }

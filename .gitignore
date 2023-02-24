@@ -4,3 +4,5 @@
 # terraform state file & lock
 .terraform.tfstate*
 .terraform.lock.hcl*
+# folder test
+test/

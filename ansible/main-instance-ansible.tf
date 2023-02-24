@@ -47,7 +47,6 @@ resource "aws_instance" "li-ansible" {
     provisioner "remote-exec"  {
       inline = [
         "echo '${var.linux_private_key_pem}' > /home/ec2-user/.ssh/li-newrelic.pem",
-        "echo '${var.win_private_key_pem}' > /home/ec2-user/.ssh/win-newrelic.pem",
         "sudo chmod 400 /home/ec2-user/.ssh/*.pem",
         "sudo amazon-linux-extras install epel -y",
         "sudo amazon-linux-extras install ansible2 -y",
@@ -56,9 +55,12 @@ resource "aws_instance" "li-ansible" {
         "sudo cp /etc/ansible/hosts /etc/ansible/hosts-default",
         "sudo chown -R ec2-user:ec2-user /etc/ansible",
         "echo '[linux]' >> /etc/ansible/hosts",
-        "echo '${var.linux_private_ip} ansible_ssh_private_key_file=/home/ec2-user/.ssh/li-newrelic.pem' >> /etc/ansible/hosts ",
+        "echo '${var.linux_private_ip} ansible_ssh_private_key_file=/home/ec2-user/.ssh/li-newrelic.pem' >> /etc/ansible/hosts",
         "echo '[windows]' >> /etc/ansible/hosts",
-        "echo '${var.windows_private_ip} ansible_ssh_private_key_file=/home/ec2-user/.ssh/win-newrelic.pem' >> /etc/ansible/hosts",
+        "echo 'Windows ansible_host=${var.windows_private_ip}' >> /etc/ansible/hosts",
+        "echo 'ansible_connection=winrm' >> /etc/ansible/hosts",
+        "echo 'ansible_user=administrator' >> /etc/ansible/hosts",
+        "echo 'ansible_winrm_server_cert_validation=ignore' >> /etc/ansible/hosts",
       ]
     }
 

@@ -34,12 +34,10 @@ variable "win_private_key_pem" {
 
 variable "vpc_id" {
   type = string
-  #default = "vpc-0f5b9240fdef55319"
 }
 
 variable "pri_subnet_id" {
   type = string
-  #default = "subnet-0071a6c492c7e5730"
 }
 
 variable "instance_username" {
@@ -109,4 +107,9 @@ variable "windows_instance_name" {
   type        = string
   description = "EC2 instance name for Windows Server"
   default     = "newrelic-win01"
+}
+
+variable "key_name_win" {
+  type        = string
+  default     = "Tan-TF-Windows-key"
 }

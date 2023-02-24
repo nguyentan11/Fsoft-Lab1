@@ -68,6 +68,10 @@ resource "aws_instance" "li" {
     }
 }
 
+data "aws_ssm_parameter" "win-pass" {
+  name = "win-pass"
+}
+
 resource "aws_instance" "win" {
   ami = var.windows_ami #"ami-0bc64185df5784cc3"
   instance_type = var.instance_type
@@ -110,7 +114,7 @@ output "windows_private_ip" {
   description = "Windows private ip"
 }
 
-/* output "password_window_decrypted" {
-  value = rsadecrypt(aws_instance.win.password_data, file("${var.win_public_key}")) 
+output "win-password" {
+  value = data.aws_ssm_parameter.win-pass.value 
   sensitive = true
-} */
+}

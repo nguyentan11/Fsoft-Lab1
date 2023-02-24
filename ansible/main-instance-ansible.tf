@@ -59,8 +59,9 @@ resource "aws_instance" "li-ansible" {
         "echo '[windows]' >> /etc/ansible/hosts",
         "echo 'Windows ansible_host=${var.windows_private_ip}' >> /etc/ansible/hosts",
         "echo 'ansible_connection=winrm' >> /etc/ansible/hosts",
-        "echo 'ansible_user=administrator' >> /etc/ansible/hosts",
+        "echo 'ansible_user=localadmin' >> /etc/ansible/hosts",
         "echo 'ansible_winrm_server_cert_validation=ignore' >> /etc/ansible/hosts",
+        "echo 'ansible_password=${var.win-password}' >> /etc/ansible/hosts",
       ]
     }
 

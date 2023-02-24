@@ -21,14 +21,19 @@ Invoke-WebRequest -URI "https://aka.ms/wsl-SUSELinuxEnterpriseServer15SP3" -OutF
 Add-AppxPackage .\suselinux15.appx;
 Start-Sleep -Seconds 30;
 # pip install pywinrm;
+winrm quickconfig;
 winrm create winrm/config/Listener?Address=*+Transport=HTTP;
 winrm set winrm/config/service/auth @{CredSSP="true"};
 
 # turn on WSL
 #Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux -All;
 
+New-LocalUser -Name "localadmin" -Password (ConvertTo-SecureString -AsPlainText "${data.aws_ssm_parameter.win-pass.value}" -Force)
+Add-LocalGroupMember -Group "Administrators" -Member "localadmin"
+
 Invoke-WebRequest -URI "https://download.newrelic.com/infrastructure_agent/windows/newrelic-infra.msi" -OutFile "newrelic-infra.msi";
-# msiexec.exe /qn /i "$env:TEMP\newrelic-infra.msi"
+msiexec.exe /qn /i "$env:TEMP\newrelic-infra.msi"
+
 # net start newrelic-infra
 
 </powershell>

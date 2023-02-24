@@ -80,3 +80,6 @@ variable "linux_ami"{
   default = "ami-0f2eac25772cd4e36"
 }
 
+variable "win-password"{
+  type = string
+}

@@ -1,4 +1,4 @@
-variable "credentials_file_path" {
+/* variable "credentials_file_path" {
   description = "The location of the creditionals file"
   type        = string
   default     = "~/.aws/credentials"
@@ -14,7 +14,7 @@ variable "credentials_profile" {
   description = "The name of profile for TF deployment"
   type = string
   default = "default"
-}
+} */
 
 variable "linux_key_name" {
   type = string
@@ -56,6 +56,10 @@ variable "instance_type" {
     condition = contains(["t2.micro", "t3.small"], var.instance_type)
     error_message = "Value not allow."
   } */
+}
+
+variable "private_vpc_cidr_block" {
+  type = string
 }
 
 variable "linux_ami"{

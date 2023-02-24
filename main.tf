@@ -21,6 +21,7 @@ module "newrelic" {
   source = "./newrelic"
   
   vpc_id = "${module.vpc.vpc-out}"
+  private_vpc_cidr_block = "${module.vpc.private_vpc_cidr_block}"
   pri_subnet_id = "${module.vpc.private-subnet-out}"
   linux_key_name = "${module.key.linux_private_key_name}"
   linux_private_key_pem = "${module.key.linux_private_key_pem}"

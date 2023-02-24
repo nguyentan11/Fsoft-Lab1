@@ -1,4 +1,4 @@
-variable "credentials_file_path" {
+/* variable "credentials_file_path" {
   description = "The location of the creditionals file"
   type        = string
   default     = "~/.aws/credentials"
@@ -14,7 +14,7 @@ variable "credentials_profile" {
   description = "The name of profile for TF deployment"
   type = string
   default = "default"
-}
+} */
 
 variable "key_name" {
   type = string

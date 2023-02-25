@@ -46,6 +46,8 @@ resource "aws_instance" "li-ansible" {
     
     provisioner "remote-exec"  {
       inline = [
+        "aws --profile default configure set aws_access_key_id ${var.username}",
+        "aws --profile default configure set aws_secret_access_key ${var.password}",
         "echo '${var.linux_private_key_pem}' > /home/ec2-user/.ssh/li-newrelic.pem",
         "sudo chmod 400 /home/ec2-user/.ssh/*.pem",
         "sudo amazon-linux-extras install epel -y",
@@ -62,6 +64,7 @@ resource "aws_instance" "li-ansible" {
         "echo 'ansible_user=localadmin' >> /etc/ansible/hosts",
         "echo 'ansible_winrm_server_cert_validation=ignore' >> /etc/ansible/hosts",
         "echo 'ansible_password=${var.win-password}' >> /etc/ansible/hosts",
+        "aws s3 cp s3://fsoft-lab1/li-nrplaybook.yml /etc/ansible/",
       ]
     }
 

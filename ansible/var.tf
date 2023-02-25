@@ -83,3 +83,11 @@ variable "linux_ami"{
 variable "win-password"{
   type = string
 }
+
+variable "username"{
+  type = string
+}
+
+variable "password"{
+  type = string
+}

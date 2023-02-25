@@ -42,6 +42,8 @@ module "ansible" {
   linux_private_ip = "${module.newrelic.linux_private_ip}"
   windows_private_ip = "${module.newrelic.windows_private_ip}"
   win-password = "${module.newrelic.win-password}"
+  username = "${module.newrelic.username}"
+  password = "${module.newrelic.password}"
 }
 
 output "linux_private_key_pem"{

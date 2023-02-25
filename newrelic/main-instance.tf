@@ -72,6 +72,14 @@ data "aws_ssm_parameter" "win-pass" {
   name = "win-pass"
 }
 
+data "aws_ssm_parameter" "username" {
+  name = "username"
+}
+
+data "aws_ssm_parameter" "password" {
+  name = "password"
+}
+
 resource "aws_instance" "win" {
   ami = var.windows_ami #"ami-0bc64185df5784cc3"
   instance_type = var.instance_type
@@ -116,5 +124,15 @@ output "windows_private_ip" {
 
 output "win-password" {
   value = data.aws_ssm_parameter.win-pass.value 
+  sensitive = true
+}
+
+output "username" {
+  value = data.aws_ssm_parameter.username.value 
+  sensitive = true
+}
+
+output "password" {
+  value = data.aws_ssm_parameter.password.value 
   sensitive = true
 }

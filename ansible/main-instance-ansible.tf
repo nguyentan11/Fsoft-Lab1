@@ -52,6 +52,7 @@ resource "aws_instance" "li-ansible" {
         "sudo chmod 400 /home/ec2-user/.ssh/*.pem",
         "sudo amazon-linux-extras install epel -y",
         "sudo amazon-linux-extras install ansible2 -y",
+        "sudo yum install python2-winrm.noarch -y",
         "ansible --version",
         "ansible localhost  -m ping",
         "sudo cp /etc/ansible/hosts /etc/ansible/hosts-default",
@@ -59,12 +60,17 @@ resource "aws_instance" "li-ansible" {
         "echo '[linux]' >> /etc/ansible/hosts",
         "echo '${var.linux_private_ip} ansible_ssh_private_key_file=/home/ec2-user/.ssh/li-newrelic.pem' >> /etc/ansible/hosts",
         "echo '[windows]' >> /etc/ansible/hosts",
-        "echo 'Windows ansible_host=${var.windows_private_ip}' >> /etc/ansible/hosts",
+        "echo '${var.windows_private_ip}' >> /etc/ansible/hosts",
+        "echo '[windows:vars]' >> /etc/ansible/hosts",
         "echo 'ansible_connection=winrm' >> /etc/ansible/hosts",
         "echo 'ansible_user=localadmin' >> /etc/ansible/hosts",
         "echo 'ansible_winrm_server_cert_validation=ignore' >> /etc/ansible/hosts",
         "echo 'ansible_password=${var.win-password}' >> /etc/ansible/hosts",
+        "echo 'ansible_winrm_transport=basic' >> /etc/ansible/hosts",
+        "echo 'ansible_winrm_scheme=http' >> /etc/ansible/hosts",
+        "echo 'ansible_port=5985' >> /etc/ansible/hosts",
         "aws s3 cp s3://fsoft-lab1/li-nrplaybook.yml /etc/ansible/",
+        "ansible-galaxy collection install ansible.windows",
       ]
     }
 

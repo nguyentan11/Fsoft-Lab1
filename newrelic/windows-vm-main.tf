@@ -19,10 +19,8 @@ Start-Sleep -Seconds 20;
 New-LocalUser -Name "localadmin" -Password (ConvertTo-SecureString -AsPlainText "${data.aws_ssm_parameter.win-pass.value}" -Force);
 Add-LocalGroupMember -Group "Administrators" -Member "localadmin";
 
-winrm quickconfig;
-winrm create winrm/config/Listener?Address=*+Transport=HTTP;
-Set-Item -Path WSMan:\localhost\Service\Auth\Basic -Value true -Force;
-Set-Item -Path WSMan:\localhost\Service\Auth\CredSSP -Value true -Force;
+winrm set winrm/config/service/auth '@{Basic="true"}';
+winrm set winrm/config/service '@{AllowUnencrypted="true"}';
 
 </powershell>
 EOF

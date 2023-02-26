@@ -70,7 +70,9 @@ resource "aws_instance" "li-ansible" {
         "echo 'ansible_winrm_scheme=http' >> /etc/ansible/hosts",
         "echo 'ansible_port=5985' >> /etc/ansible/hosts",
         "aws s3 cp s3://fsoft-lab1/li-nrplaybook.yml /etc/ansible/",
+        "aws s3 cp s3://fsoft-lab1/win-nrplaybook.yml /etc/ansible/",
         "ansible-galaxy collection install ansible.windows",
+        "ansible-galaxy collection install community.windows",
       ]
     }
 

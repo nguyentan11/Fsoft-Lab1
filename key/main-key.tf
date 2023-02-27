@@ -20,9 +20,10 @@ resource "aws_key_pair" "linux_key" {
   }
 }
 
-resource "local_file" "Linux_ssh_key" {
+resource "local_sensitive_file" "Linux_ssh_key" {
   filename = "D://ssh-key//${aws_key_pair.linux_key.key_name}.pem"
   content  = tls_private_key.tan-private-linux.private_key_pem
+  file_permission = "0400"
 }
 
 resource "tls_private_key" "tan-private-win" {
@@ -41,9 +42,10 @@ resource "aws_key_pair" "win_key" {
   }
 }
 
-resource "local_file" "Windows_ssh_key" {
+resource "local_sensitive_file" "Windows_ssh_key" {
   filename = "D://ssh-key//${aws_key_pair.win_key.key_name}.pem"
   content  = tls_private_key.tan-private-win.private_key_pem
+  file_permission = "0400"
 }
 
 output "linux_private_key_name" {

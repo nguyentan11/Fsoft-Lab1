@@ -2,8 +2,9 @@
 .terraform/
 
 # terraform state file & lock
-.terraform.tfstate
-.terraform.tfstate.backup
+terraform.tfstate
+terraform.tfstate.backup
 .terraform.lock.hcl*
+
 # folder test
 test/

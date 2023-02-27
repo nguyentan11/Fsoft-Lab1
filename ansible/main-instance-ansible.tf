@@ -73,12 +73,13 @@ resource "aws_instance" "li-ansible" {
         "aws s3 cp s3://fsoft-lab1/win-nrplaybook.yml /etc/ansible/",
         "ansible-galaxy collection install ansible.windows",
         "ansible-galaxy collection install community.windows",
+        "ansible-playbook -i /etc/ansible/hosts /etc/ansible/li-nrplaybook.yml",
       ]
     }
 
-    provisioner "local-exec" {
+/*     provisioner "local-exec" {
       command = "ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -u ec2-user --key-file D://ssh-key//Tan-TF-Linux-key.pem -T 300 -i '${self.public_ip},', li-nrplaybook.yaml"
-    }
+    } */
 
     tags = {
       Name = "linux-ansible"

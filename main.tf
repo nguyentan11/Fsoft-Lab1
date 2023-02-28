@@ -71,8 +71,3 @@ output "win_public_key" {
   value     = module.key.win_public_key
   sensitive = true
 }
-
-output "win-password" {
-  value = module.newrelic.win-password
-  sensitive = true
-}

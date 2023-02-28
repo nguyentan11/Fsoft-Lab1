@@ -1,6 +1,6 @@
 # terraform folder need to ignore
 .terraform/
-
+terraform.tfstate.d/
 # terraform state file & lock
 terraform.tfstate
 terraform.tfstate.backup

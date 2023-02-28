@@ -1,3 +1,15 @@
+terraform {
+  backend "s3"{
+    bucket = "fsfoft-tf-state"
+    key = "lab01/s3/terraform.tfstate"
+    region = "ap-southeast-1"
+
+    dynamodb_table = "terraform-locks-state"
+    encrypt = true
+  }
+  required_version = ">= 0.12"
+}
+
 provider "aws" {
     region = "ap-southeast-1" #"${var.aws_region}"
     shared_credentials_files = ["~/.aws/credentials"] #["${pathexpand(var.credentials_file_path)}"]
@@ -17,7 +29,7 @@ module "key" {
   source = "./key"
 }
 
-module "newrelic" {
+/* module "newrelic" {
   source = "./newrelic"
   
   vpc_id = "${module.vpc.vpc-out}"
@@ -44,7 +56,7 @@ module "ansible" {
   win-password = "${module.newrelic.win-password}"
   username = "${module.newrelic.username}"
   password = "${module.newrelic.password}"
-}
+} */
 
 output "linux_private_key_pem"{
   value = module.key.linux_private_key_pem

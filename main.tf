@@ -1,18 +1,18 @@
 terraform {
   backend "s3"{
-    bucket = "fsfoft-tf-state"
+    bucket = "fsoft-tf-lockstate"
     key = "lab01/s3/terraform.tfstate"
     region = "ap-southeast-1"
 
-    dynamodb_table = "terraform-locks-state"
+    dynamodb_table = "terraform-lockstate"
     encrypt = true
   }
 }
 
 provider "aws" {
-    region = "ap-southeast-1" #"${var.aws_region}"
-    shared_credentials_files = ["~/.aws/credentials"] #["${pathexpand(var.credentials_file_path)}"]
-    profile = "default" #"${var.credentials_profile}"
+    #region = "ap-southeast-1"
+    #shared_credentials_files = ["~/.aws/credentials"] #["${pathexpand(var.credentials_file_path)}"]
+    #profile = "default"
 }
 
 module "vpc" {

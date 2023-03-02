@@ -73,7 +73,7 @@ resource "aws_instance" "li-ansible" {
         "aws s3 cp s3://fsoft-lab1/win-nrplaybook.yml /etc/ansible/",
         "ansible-galaxy collection install ansible.windows",
         "ansible-galaxy collection install community.windows",
-        "ansible-playbook -i /etc/ansible/hosts /etc/ansible/li-nrplaybook.yml",
+        #"ansible-playbook -i /etc/ansible/hosts /etc/ansible/li-nrplaybook.yml",
       ]
     }
 

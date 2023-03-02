@@ -28,7 +28,7 @@ module "key" {
   source = "./key"
 }
 
-/* module "newrelic" {
+module "newrelic" {
   source = "./newrelic"
   
   vpc_id = "${module.vpc.vpc-out}"
@@ -55,7 +55,7 @@ module "ansible" {
   win-password = "${module.newrelic.win-password}"
   username = "${module.newrelic.username}"
   password = "${module.newrelic.password}"
-} */
+}
 
 output "linux_private_key_pem"{
   value = module.key.linux_private_key_pem

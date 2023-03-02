@@ -71,3 +71,11 @@ output "win_public_key" {
   value     = module.key.win_public_key
   sensitive = true
 }
+
+output "linux_private_ip" {
+  value = module.newrelic.linux_private_ip
+}
+
+output "windows_private_ip" {
+  value = module.newrelic.windows_private_ip 
+}

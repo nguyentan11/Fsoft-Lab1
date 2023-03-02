@@ -40,7 +40,7 @@ module "newrelic" {
   win_private_key_pem = "${module.key.win_private_key_pem}"
 }
 
-module "ansible" {
+/* module "ansible" {
   source = "./ansible"
 
   private_vpc_cidr_block = "${module.vpc.private_vpc_cidr_block}"
@@ -55,7 +55,7 @@ module "ansible" {
   win-password = "${module.newrelic.win-password}"
   username = "${module.newrelic.username}"
   password = "${module.newrelic.password}"
-}
+} */
 
 output "linux_private_key_pem"{
   value = module.key.linux_private_key_pem

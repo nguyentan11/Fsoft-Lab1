@@ -62,6 +62,11 @@ output "linux_private_key_pem"{
   sensitive = true
 }
 
+output "linux_public_key" {
+  value = module.key.linux_public_ip
+  sensitive = true
+}
+
 output "win_private_key_pem"{
   value = module.key.win_private_key_pem
   sensitive = true

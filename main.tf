@@ -76,6 +76,6 @@ output "linux_private_ip" {
   value = module.newrelic.linux_private_ip
 }
 
-output "windows_private_ip" {
+/* output "windows_private_ip" {
   value = module.newrelic.windows_private_ip 
-}
+} */

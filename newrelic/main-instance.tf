@@ -4,6 +4,18 @@
     profile = "${var.credentials_profile}"
 } */
 
+data "aws_ssm_parameter" "win-pass" {
+  name = "win-pass"
+}
+
+data "aws_ssm_parameter" "username" {
+  name = "username"
+}
+
+data "aws_ssm_parameter" "password" {
+  name = "password"
+}
+
 resource "aws_security_group" "secu-group-test2" {
   name = "New Relic"
   description = "New Relic secu group"
@@ -59,25 +71,15 @@ resource "aws_instance" "li" {
     
     provisioner "remote-exec"  {
       inline = [
-        "touch /home/ec2-user/test.txt",
+        "sudo useradd -d /home/local local",
+        "sudo echo '${data.aws_ssm_parameter.win-pass.value}' | sudo passwd --stdin local",
+        "sudo usermod -aG wheel local",
       ]
     }
 
     tags = {
       Name = "linux-newrelic"
     }
-}
-
-data "aws_ssm_parameter" "win-pass" {
-  name = "win-pass"
-}
-
-data "aws_ssm_parameter" "username" {
-  name = "username"
-}
-
-data "aws_ssm_parameter" "password" {
-  name = "password"
 }
 
 /* resource "aws_instance" "win" {

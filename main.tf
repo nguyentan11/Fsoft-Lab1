@@ -63,7 +63,7 @@ output "linux_private_key_pem"{
 }
 
 output "linux_public_key" {
-  value = module.key.linux_public_ip
+  value = module.key.linux_public_key
   sensitive = true
 }
 

@@ -117,6 +117,11 @@ output "linux_private_ip" {
   description = "Linux private ip"
 }
 
+output "linux_public_ip" {
+  value       = aws_instance.li.public_ip
+  description = "Linux public ip"
+}
+
 /* output "windows_private_ip" {
   value       = aws_instance.win.private_ip
   description = "Windows private ip"

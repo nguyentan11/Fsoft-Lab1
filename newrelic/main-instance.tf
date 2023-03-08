@@ -124,10 +124,10 @@ output "linux_public_ip" {
   description = "Linux public ip"
 }
 
-/* output "windows_private_ip" {
+output "windows_private_ip" {
   value       = aws_instance.win.private_ip
   description = "Windows private ip"
-} */
+}
 
 output "win-password" {
   value = data.aws_ssm_parameter.win-pass.value 

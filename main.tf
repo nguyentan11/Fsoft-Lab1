@@ -7,6 +7,12 @@ terraform {
     dynamodb_table = "terraform-lockstate"
     encrypt = true
   }
+
+  required_providers {
+    github = {
+      source = "integrations/github"
+    }
+  }
 }
 
 provider "aws" {

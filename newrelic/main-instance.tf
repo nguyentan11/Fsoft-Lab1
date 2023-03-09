@@ -4,6 +4,10 @@
     profile = "${var.credentials_profile}"
 } */
 
+data "aws_ssm_parameter" "win-user" {
+  name = "win-user"
+}
+
 data "aws_ssm_parameter" "win-pass" {
   name = "win-pass"
 }
@@ -68,14 +72,6 @@ resource "aws_instance" "li" {
         timeout = 10
         #tls_private_key.example.private_key_openssh #"${file("C:\\Users\\tnguyen600\\Desktop\\PGA\\tan-aws-key1.pem")}" #"${file(var.pri_key)}"
     }
-    
-    provisioner "remote-exec"  {
-      inline = [
-        "sudo useradd -d /home/local local",
-        "sudo echo '${data.aws_ssm_parameter.win-pass.value}' | sudo passwd --stdin local",
-        "sudo usermod -aG wheel local",
-      ]
-    }
 
     tags = {
       Name = "linux-newrelic"
@@ -124,10 +120,15 @@ output "linux_public_ip" {
   description = "Linux public ip"
 }
 
-/* output "windows_private_ip" {
+output "windows_private_ip" {
   value       = aws_instance.win.private_ip
   description = "Windows private ip"
-} */
+}
+
+output "windows_public_ip" {
+  value       = aws_instance.win.public_ip
+  description = "Windows public ip"
+}
 
 output "win-password" {
   value = data.aws_ssm_parameter.win-pass.value 
@@ -142,4 +143,8 @@ output "username" {
 output "password" {
   value = data.aws_ssm_parameter.password.value 
   sensitive = true
+}
+
+output "instance_username" {
+  value = var.instance_username
 }

@@ -1,4 +1,4 @@
-terraform {
+/* terraform {
   backend "s3"{
     bucket = "fsoft-tf-lockstate"
     key = "lab01/s3/terraform.tfstate"
@@ -13,7 +13,7 @@ terraform {
       source = "integrations/github"
     }
   }
-}
+} */
 
 provider "aws" {
     #region = "ap-southeast-1"

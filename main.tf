@@ -64,7 +64,7 @@ module "newrelic" {
 } */
 
 data "template_file" "Ansible-inventory" {
-  template = "${file("${path.module}/ansible-inventory/inventory")}"
+  template = "${file("${path.module}/ansible-inventory/inventory-template")}"
 
   vars = {
     LINUX_HOST_IP = module.newrelic.linux_public_ip
@@ -78,7 +78,7 @@ data "template_file" "Ansible-inventory" {
 
 resource "local_file" "inventory" {
   content  = data.template_file.Ansible-inventory.rendered
-  filename = "${path.module}/inventory"
+  filename = "${path.module}/ansible-inventory/inventory"
 }
 
 output "linux_private_key_pem"{

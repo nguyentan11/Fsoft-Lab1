@@ -78,7 +78,7 @@ resource "aws_instance" "li" {
     }
 }
 
-/* resource "aws_instance" "win" {
+resource "aws_instance" "win" {
   ami = var.windows_ami #"ami-0bc64185df5784cc3"
   instance_type = var.instance_type
   subnet_id = var.pri_subnet_id
@@ -108,7 +108,7 @@ resource "aws_instance" "li" {
   tags = {
     Name = "windows-newrelic"
   }
-} */
+}
 
 output "linux_private_ip" {
   value       = aws_instance.li.private_ip
@@ -130,6 +130,10 @@ output "windows_public_ip" {
   description = "Windows public ip"
 }
 
+output "win-user" {
+  value = data.aws_ssm_parameter.win-user.value
+  sensitive = true
+}
 output "win-password" {
   value = data.aws_ssm_parameter.win-pass.value 
   sensitive = true

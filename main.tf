@@ -63,6 +63,24 @@ module "newrelic" {
   password = "${module.newrelic.password}"
 } */
 
+data "template_file" "Ansible-inventory" {
+  template = "${file("${path.module}/ansible-inventory/inventory")}"
+
+  vars = {
+    LINUX_HOST_IP = module.newrelic.linux_public_ip
+    LINUX_HOST_USER = module.newrelic.instance_username
+    WINDOWS_HOST_IP = module.newrelic.windows_public_ip
+    WINDOWS_HOST_USER = module.newrelic.win-user
+    WINDOWS_HOST_PASSWORD = module.newrelic.win-password
+    LINUX_PRIVATE_KEY = module.key.linux_private_key_name
+  }
+}
+
+resource "local_file" "inventory" {
+  content  = data.template_file.Ansible-inventory.rendered
+  filename = "${path.module}/inventory"
+}
+
 output "linux_private_key_pem"{
   value = module.key.linux_private_key_pem
   sensitive = true

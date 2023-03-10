@@ -113,6 +113,11 @@ output "newrelic-pass" {
   value = module.newrelic.win-password
   sensitive = true
 }
-/* output "windows_private_ip" {
+
+output "windows_private_ip" {
   value = module.newrelic.windows_private_ip 
-} */
+}
+
+output "windows_public_ip" {
+  value = module.newrelic.windows_public_ip 
+}

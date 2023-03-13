@@ -14,9 +14,9 @@
       ansible.windows.win_whoami:
     - name: Touch a file (creates if not present, updates modification time if present)
       ansible.windows.win_file:
-      path: C:\Users\localadmin\Desktop\foo.txt
-      state: touch
+        path: C:\Users\localadmin\Desktop\foo.txt
+        state: touch
     - name: Touch a directory (creates if not present, updates modification time if present)
       ansible.windows.win_file:
-      path: C:\Users\localadmin\Desktop\tan-test
-      state: directory
+        path: C:\Users\localadmin\Desktop\tan-test
+        state: directory

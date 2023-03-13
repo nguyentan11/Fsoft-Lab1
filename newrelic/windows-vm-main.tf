@@ -15,7 +15,7 @@ Invoke-WebRequest https://raw.githubusercontent.com/ansible/ansible/devel/exampl
 
 Powershell -ExecutionPolicy Unrestricted -File ConfigureRemotingForAnsible.ps1;
 
-Invoke-WebRequest https://download.newrelic.com/infrastructure_agent/windows/newrelic-infra.msi -OutFile C:\Users\localadmin\Downloads\newrelic-infra.msi1;
+Invoke-WebRequest https://download.newrelic.com/infrastructure_agent/windows/newrelic-infra.msi -OutFile newrelic-infra.msi;
 
 New-LocalUser -Name "${data.aws_ssm_parameter.win-user.value}" -Password (ConvertTo-SecureString -AsPlainText "${data.aws_ssm_parameter.win-pass.value}" -Force);
 Add-LocalGroupMember -Group "Administrators" -Member "${data.aws_ssm_parameter.win-user.value}";

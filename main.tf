@@ -81,11 +81,6 @@ resource "local_file" "inventory" {
   filename = "${path.module}/ansible-inventory/inventory"
 }
 
-resource "local_file" "public-ip" {
-  content  = module.newrelic.windows_public_ip
-  filename = "${path.module}/publicip.txt"
-}
-
 output "linux_private_key_pem"{
   value = module.key.linux_private_key_pem
   sensitive = true

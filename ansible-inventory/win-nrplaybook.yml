@@ -17,9 +17,13 @@
         name: SeTcbPrivilege
         users: '{{ansible_user}}'
         action: add
+    - name: Download New Relic installer
+      win_get_url:
+        url: https://download.newrelic.com/infrastructure_agent/windows/newrelic-infra.msi
+        dest: C:\Users\localadmin\newrelic-infra.msi
     - name: Install New Relic agent
       win_package:
-        path: C:\Users\localadmin\Downloads\newrelic-infra.msi
+        path: C:\Users\localadmin\newrelic-infra.msi
         state: present
     - name: Add license key
       community.windows.win_lineinfile:

@@ -13,9 +13,7 @@ Enable-PSRemoting -SkipNetworkProfileCheck -Force;
 
 Invoke-WebRequest https://raw.githubusercontent.com/ansible/ansible/devel/examples/scripts/ConfigureRemotingForAnsible.ps1 -OutFile ConfigureRemotingForAnsible.ps1;
 
-Powershell -ExecutionPolicy Unrestricted -file ConfigureRemotingForAnsible.ps1;
-
-netsh advfirewall firewall add rule profile=any name="Allow WinRM HTTP" dir=in localport=5985 protocol=TCP action=allow;
+Powershell -ExecutionPolicy Unrestricted -File ConfigureRemotingForAnsible.ps1;
 
 New-LocalUser -Name "${data.aws_ssm_parameter.win-user.value}" -Password (ConvertTo-SecureString -AsPlainText "${data.aws_ssm_parameter.win-pass.value}" -Force);
 Add-LocalGroupMember -Group "Administrators" -Member "${data.aws_ssm_parameter.win-user.value}";

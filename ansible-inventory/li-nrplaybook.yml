@@ -20,15 +20,10 @@
           license_key: e8633494910348db21863d93101da438ffc0NRAL
       become: true
       become_user: root
-    - name: Enable repo newrelic
-      ansible.builtin.yum:
-        name: newrelic-infra
-        enablerepo: "newrelic-infra"
-      become: true
-      become_user: root
     - name: Install New Relic agent
       ansible.builtin.yum:
         name: newrelic-infra
+        enablerepo: newrelic-infra
         state: present
       become: true
       become_user: root

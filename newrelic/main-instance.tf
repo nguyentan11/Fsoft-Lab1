@@ -78,7 +78,13 @@ resource "aws_instance" "li" {
         timeout = 10
         #tls_private_key.example.private_key_openssh #"${file("C:\\Users\\tnguyen600\\Desktop\\PGA\\tan-aws-key1.pem")}" #"${file(var.pri_key)}"
     }
-
+provisioner "remote-exec"  {
+      inline = [
+        "sleep 30",
+        "curl -o /etc/yum.repos.d/newrelic-infra.repo https://download.newrelic.com/infrastructure_agent/linux/yum/amazonlinux/2/x86_64/newrelic-infra.repo",
+      ]
+    }
+    
     tags = {
       Name = "linux-newrelic"
     }

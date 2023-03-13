@@ -81,7 +81,7 @@ resource "aws_instance" "li" {
 provisioner "remote-exec"  {
       inline = [
         "sleep 30",
-        "curl -o /etc/yum.repos.d/newrelic-infra.repo https://download.newrelic.com/infrastructure_agent/linux/yum/amazonlinux/2/x86_64/newrelic-infra.repo",
+        "sudo curl -o /etc/yum.repos.d/newrelic-infra.repo https://download.newrelic.com/infrastructure_agent/linux/yum/amazonlinux/2/x86_64/newrelic-infra.repo",
       ]
     }
     

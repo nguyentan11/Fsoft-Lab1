@@ -4,7 +4,7 @@
   tasks:
     - name: wait until able to reachable
       wait_for_connection:
-        delay: 60
+        delay: 90
         timeout: 300
     - name: Gather facts for first time
       setup:
@@ -12,3 +12,11 @@
       ansible.windows.win_ping:
     - name: Check logged user
       ansible.windows.win_whoami:
+    - name: Touch a file (creates if not present, updates modification time if present)
+      ansible.windows.win_file:
+      path: C:\Users\localadmin\Desktop\foo.txt
+      state: touch
+    - name: Touch a directory (creates if not present, updates modification time if present)
+      ansible.windows.win_file:
+      path: C:\Users\localadmin\Desktop\tan-test
+      state: directory

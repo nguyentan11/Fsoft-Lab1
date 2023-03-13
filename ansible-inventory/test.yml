@@ -10,3 +10,5 @@
       setup:
     - name: Ping check hosts
       ansible.windows.win_ping:
+    - name: Check logged user
+      ansible.windows.win_whoami:

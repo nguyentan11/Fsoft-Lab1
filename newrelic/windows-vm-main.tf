@@ -19,6 +19,7 @@ New-LocalUser -Name "${data.aws_ssm_parameter.win-user.value}" -Password (Conver
 Add-LocalGroupMember -Group "Administrators" -Member "${data.aws_ssm_parameter.win-user.value}";
 
 winrm set winrm/config/service/auth '@{Basic="true"}';
+winrm set winrm/config/service/auth '@{CredSSP="true"}';
 winrm set winrm/config/service '@{AllowUnencrypted="true"}';
 
 </powershell>

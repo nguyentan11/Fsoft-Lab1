@@ -15,7 +15,6 @@
       become_user: root
     - name: Add the infra monitoring agent repo
       command: curl -o /etc/yum.repos.d/newrelic-infra.repo https://download.newrelic.com/infrastructure_agent/linux/yum/amazonlinux/2/x86_64/newrelic-infra.repo
-      become: true
       become_user: root
     - name: Enable repo newrelic
       ansible.builtin.yum:

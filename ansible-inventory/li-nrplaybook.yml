@@ -20,14 +20,9 @@
           license_key: e8633494910348db21863d93101da438ffc0NRAL
       become: true
       become_user: root
-    - name: Install New Relic agent
-      ansible.builtin.yum:
-        name: newrelic-infra
-        enablerepo: newrelic-infra
-        state: present
-      become: true
-      become_user: root
-    - name: Start New Relic agent
-      command: systemctl restart newrelic-infra
+    - name: Download New Relic agent
+      ansible.builtin.shell:
+        cmd: "sudo curl -o /etc/yum.repos.d/newrelic-infra1.repo https://download.newrelic.com/infrastructure_agent/linux/yum/amazonlinux/2/x86_64/newrelic-infra.repo "
+        chdir: /etc/yum.repos.d
       become: true
       become_user: root

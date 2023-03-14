@@ -26,3 +26,10 @@
         chdir: /etc/yum.repos.d
       become: true
       become_user: root
+    - name: Install New Relic agent
+      ansible.builtin.yum:
+        name: newrelic-infra
+        enablerepo: newrelic-infra
+        state: present
+      become: true
+      become_user: root

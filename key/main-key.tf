@@ -46,6 +46,22 @@ resource "local_file" "Windows_ssh_key" {
   content  = tls_private_key.tan-private-win.private_key_pem
 }
 
+resource "aws_ssm_parameter" "linux_prkey_secret"{
+  name = "/${var.key_name_linux}"
+  description = "Linux host private key"
+  type = "String"
+  value = tls_private_key.tan-private-linux.private_key_pem
+  overwrite = true
+}
+
+resource "aws_ssm_parameter" "win_prkey_secret"{
+  name = "/${var.key_name_win}"
+  description = "Windows host private key"
+  type = "String"
+  value = tls_private_key.tan-private-win.private_key_pem
+  overwrite = true
+}
+
 output "linux_private_key_name" {
   value     = var.key_name_linux
 }

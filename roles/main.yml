@@ -1,0 +1,5 @@
+- name: Setup New Relic
+  hosts: all
+  roles:
+  - { role: li-newrelic, when: ansible_os_family == "RedHat" }
+  - { role: win-newrelic, when: ansible_os_family == "Windows" }

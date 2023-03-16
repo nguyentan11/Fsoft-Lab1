@@ -20,10 +20,10 @@ resource "aws_key_pair" "linux_key" {
   }
 }
 
-resource "local_file" "Linux_ssh_key" {
-  filename = "${aws_key_pair.linux_key.key_name}"
-  content  = tls_private_key.tan-private-linux.private_key_pem
-}
+# resource "local_file" "Linux_ssh_key" {
+#   filename = "${aws_key_pair.linux_key.key_name}"
+#   content  = tls_private_key.tan-private-linux.private_key_pem
+# }
 
 resource "tls_private_key" "tan-private-win" {
   algorithm = "RSA"
@@ -41,10 +41,10 @@ resource "aws_key_pair" "win_key" {
   }
 }
 
-resource "local_file" "Windows_ssh_key" {
-  filename = "${aws_key_pair.win_key.key_name}"
-  content  = tls_private_key.tan-private-win.private_key_pem
-}
+# resource "local_file" "Windows_ssh_key" {
+#   filename = "${aws_key_pair.win_key.key_name}"
+#   content  = tls_private_key.tan-private-win.private_key_pem
+# }
 
 resource "aws_ssm_parameter" "linux_prkey_secret"{
   name = "/${var.key_name_linux}"

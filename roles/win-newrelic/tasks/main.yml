@@ -1,6 +1,6 @@
   - name: wait until able to reachable
     wait_for_connection:
-      delay: 60
+      delay: 90
       timeout: 300
   - name: Ping check hosts
     ansible.windows.win_ping:

@@ -17,20 +17,20 @@
         name: SeTcbPrivilege
         users: '{{ansible_user}}'
         action: add
-    - name: Download New Relic installer
-      win_get_url:
-        url: https://download.newrelic.com/infrastructure_agent/windows/newrelic-infra.msi
-        dest: C:\Users\localadmin\newrelic-infra.msi
-    - name: Install New Relic agent
-      win_package:
-        path: C:\Users\localadmin\newrelic-infra.msi
-        state: present
-    - name: Add license key
-      community.windows.win_lineinfile:
-        path: C:\Program Files\New Relic\newrelic-infra\newrelic-infra.yml
-        regex: '^license_key:'
-        line: 'license_key: e8633494910348db21863d93101da438ffc0NRAL'
-    - name: Restart a service
-      ansible.windows.win_service:
-        name: newrelic-infra
-        state: restarted
+    # - name: Download New Relic installer
+    #   win_get_url:
+    #     url: https://download.newrelic.com/infrastructure_agent/windows/newrelic-infra.msi
+    #     dest: C:\Users\localadmin\newrelic-infra.msi
+    # - name: Install New Relic agent
+    #   win_package:
+    #     path: C:\Users\localadmin\newrelic-infra.msi
+    #     state: present
+    # - name: Add license key
+    #   community.windows.win_lineinfile:
+    #     path: C:\Program Files\New Relic\newrelic-infra\newrelic-infra.yml
+    #     regex: '^license_key:'
+    #     line: 'license_key: e8633494910348db21863d93101da438ffc0NRAL'
+    # - name: Restart a service
+    #   ansible.windows.win_service:
+    #     name: newrelic-infra
+    #     state: restarted

@@ -7,3 +7,9 @@
   hosts: windows
   roles:
   - role: win-newrelic
+
+# - name: New Relic setup
+#   hosts: all
+#   roles:
+#   - { role: li-nr, when: ansible_os_family == "RedHat" }
+#   - { role: win-nr, when: ansible_os_family == "Windows" }

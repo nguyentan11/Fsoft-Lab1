@@ -1,11 +1,9 @@
-- name: Setup New Relic
-  hosts: all
-  gather_facts: False
-  tasks:
-  - name: wait until able to reachable
-    wait_for_connection:
-      delay: 60
-      timeout: 300
+- name: Setup New Relic on Linux
+  hosts: linux
   roles:
-  - { role: li-newrelic, when: ansible_os_family == "RedHat" }
-  - { role: win-newrelic, when: ansible_os_family == "Windows" }
+  - role: li-newrelic
+
+- name: Setup New Relic on Windows
+  hosts: windows
+  roles:
+  - role: win-newrelic
